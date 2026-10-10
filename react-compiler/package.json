@@ -1,0 +1,5 @@
+{
+  "name": "babel-plugin-react-compiler",
+  "private": true,
+  "main": "../node_modules/babel-plugin-react-compiler-real/dist/index.js"
+}

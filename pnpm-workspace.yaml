@@ -1,1 +1,3 @@
 virtualStoreType: global
+overrides:
+  "next>babel-plugin-react-compiler": link:./react-compiler

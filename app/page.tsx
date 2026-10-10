@@ -1,3 +1,4 @@
+import { Counter } from "./counter";
 export default function Page() {
-  return <h1>Hello</h1>;
+  return <Counter label="Clicks" />;
 }

@@ -14,8 +14,8 @@
   "devDependencies": {
     "@types/node": "^24",
     "@types/react": "^19",
-    "babel-plugin-react-compiler": "1.0.0",
-    "typescript": "^5"
+    "typescript": "^5",
+    "babel-plugin-react-compiler-real": "npm:babel-plugin-react-compiler@1.0.0"
   },
   "packageManager": "pnpm@12.9.1"
 }
