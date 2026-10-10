@@ -40,3 +40,26 @@ Debug info:
 - `reactCompiler: false`: builds.
 - Default store (delete `pnpm-workspace.yaml`, reinstall), compiler on: builds.
 - Global store without `turbopackAdditionalRoots`: fails earlier with `Could not find the Next.js package (next/package.json)`, which is what that option fixes.
+
+## Workaround
+
+Make next's copy of the plugin a link to a stand-in package inside the project, which loads the real plugin. The `workaround` branch has it:
+
+```yaml
+# pnpm-workspace.yaml
+overrides:
+  "next>babel-plugin-react-compiler": link:./react-compiler
+```
+
+```json
+// react-compiler/package.json
+{
+  "name": "babel-plugin-react-compiler",
+  "private": true,
+  "main": "../node_modules/babel-plugin-react-compiler-real/dist/index.js"
+}
+```
+
+In `package.json`, install the real plugin under an alias, `"babel-plugin-react-compiler-real": "npm:babel-plugin-react-compiler@1.0.0"`. With a direct `babel-plugin-react-compiler` dependency, pnpm satisfies next's peer with it and skips the override.
+
+The build passes, and the compiler output is there (`useMemoCache` in the client component's chunk).
